@@ -1,5 +1,5 @@
 import Library
 
-def call(version){
+def call(String version){
     return new Library(this).buildImage(version)
 }
