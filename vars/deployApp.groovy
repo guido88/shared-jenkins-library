@@ -1,5 +1,5 @@
 import Library
 
-def call(){
-    return new Library(this).deploy()
+def call(String version){
+    return new Library(this).deploy(version)
 }

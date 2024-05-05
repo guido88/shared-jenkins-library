@@ -12,17 +12,17 @@ class Library implements Serializable{
 
   }
 
-  def buildImage(){
+  def buildImage(String version){
      script.echo "Building Docker Image...."
      script.withCredentials([script.usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-       script.sh 'docker build -t guido88/privaterepo:jma-2.0 .'
+       script.sh "docker build -t guido88/privaterepo:$version ."
        script.sh "echo $script.PASS | docker login -u $script.USER --password-stdin"
      }
   }
 
-  def deploy(){
+  def deploy(String version){
     script.echo "Deploying App...."
-    script.sh 'docker push guido88/privaterepo:jma-2.0'
+    script.sh "docker push guido88/privaterepo:$version"
 
   }
 }
