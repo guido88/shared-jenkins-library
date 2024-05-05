@@ -1,5 +1,5 @@
 import Library
 
-def call(String version){
-    return new Library(this).buildJar(version)
+def call(){
+    return new Library(this).buildJar()
 }
