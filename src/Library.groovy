@@ -32,7 +32,7 @@ class Library implements Serializable{
       script.sh 'git config --global user.email "jenkins@example.com"'
       script.sh 'git config --global user.name "jenkins"'
 
-      script.sh 'git remote set-url origin https://${script.USER}:${script.PASS}@github.com/guido88/java-maven-app.git'
+      script.sh 'git remote set-url origin https://$USER:$PASS@github.com/guido88/java-maven-app.git'
       script.sh "git add ."
       script.sh 'git commit -m "ci: version bump"'
       script.sh 'git push origin HEAD:master'
