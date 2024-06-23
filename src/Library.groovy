@@ -26,8 +26,11 @@ class Library implements Serializable{
 
      script.sshagent(['ssh-creds']) {
 
-      def dockerCmd = "docker run -p8080:8080 -d guido88/privaterepo:$version"
-       script.sh "ssh -o StrictHostKeyChecking=no ec2-user@54.175.70.197 ${dockerCmd}"
+       script.sh "scp docker-compose.yaml ec2-user@54.175.70.197:/home/ec2-user/"
+       script.sh "scp script.sh ec2-user@54.175.70.197:/home/ec2-user/"
+
+       def cmd = "bash ./script.sh $version"
+       script.sh "ssh -o StrictHostKeyChecking=no ec2-user@54.175.70.197 ${cmd}"
     }
   }
 
