@@ -24,6 +24,11 @@ class Library implements Serializable{
     script.echo "Deploying App...."
     script.sh "docker push guido88/privaterepo:$version"
 
+     script.sshagent(['ssh-creds']) {
+
+      def dockerCmd = "docker run -p8080:8080 -d guido88/privaterepo:$version"
+       script.sh "ssh -o StrictHotsKeyChecking=no ec2-user@54.175.70.197 ${dockerCmd}"
+    }
   }
 
   def commitVersion(){
